@@ -176,7 +176,7 @@ sub _register_event_loop {
        # print STDERR "INCOMING:$incoming";
        $reading_buffer .= $incoming . "\n";
        my $len = substr($reading_buffer, 0, 6);
-       if (!$len =~ /[0-9a-f]{6}/i) {
+       if ($len !~ /[0-9a-f]{6}/i) {
          # print STDERR "Wrong length code: $reading_buffer\nAbort\n";
          AE::log warn => "Wrong length code: $reading_buffer\n";
          $hdl->destroy;
